@@ -44,19 +44,19 @@ public class CollisionDetection : MonoBehaviour
     public Vector2 WallboxSize;
 
     //Ground
-    [Header("PropertiesGround")] 
+    [Header("Properties Ground")] 
     public int maxHits = 1;
     public bool detectGround = true;
     public ContactFilter2D filter;
 
     //Top
-    [Header("PropertiesTop")]
+    [Header("Properties Top")]
     public int maxHitsTop = 1;
     public bool detectTop = true;
     public ContactFilter2D filterTop;
 
     //Wall
-    [Header("PropertiesWall")]
+    [Header("Properties Wall")]
     public int maxHitsWall = 1;
     public bool detectWall = true;
     public ContactFilter2D filterWall;
