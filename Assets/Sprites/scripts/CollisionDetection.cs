@@ -132,11 +132,11 @@ public class CollisionDetection : MonoBehaviour
     //Top
     void DetectTop() //*3
     {
-        if (!detectGround) return;
+        if (!detectTop) return;
 
         Collider2D[] results = new Collider2D[maxHits];
-        Vector3 newPos = (Vector3)TopBoxPos + transform.position;
-        int numHits = Physics2D.OverlapBox(newPos, TopBoxSize, 0, filter, results);
+        Vector3 newPosTop = (Vector3)TopBoxPos + transform.position;
+        int numHits = Physics2D.OverlapBox(newPosTop, TopBoxSize, 0, filter, results);
 
         if (numHits > 0)
         {
@@ -162,8 +162,8 @@ public class CollisionDetection : MonoBehaviour
         if (!detectWall) return;
 
         Collider2D[] results = new Collider2D[maxHits];
-        Vector3 newPos = (Vector3)WallBoxPos + transform.position;
-        int numHits = Physics2D.OverlapBox(newPos, WallboxSize, 0, filter, results);
+        Vector3 newPosWall = (Vector3)WallBoxPos + transform.position;
+        int numHits = Physics2D.OverlapBox(newPosWall, WallboxSize, 0, filter, results);
 
         if (numHits > 0)
         {
