@@ -4,29 +4,75 @@ using UnityEngine;
 
 public class CollisionDetection : MonoBehaviour
 {
-    [Header("State")]
+    //ground
+    [Header("StateGround")] //*3
     public bool isGrounded;
     public bool wasGroundedLastFrame;
     public bool justGrounded;
     public bool justNOTGrounded;
     public bool isFalling;
 
-    [Header("Boxes")]
+    //top
+    [Header("StateTop")] //*3
+    public bool isTop;
+    public bool wasTopLastFrame;
+    public bool justTop;
+    public bool justNOTTop;
+    public bool isOnair;
+
+    //wall
+    [Header("StateWall")] //*3
+    public bool isWall;
+    public bool wasWallLastFrame;
+    public bool justWall;
+    public bool justNOTWall;
+    public bool isOnWall;
+
+    //Ground
+    [Header("BoxesGround")] //*3
     public Vector2 groundBoxPos;
     public Vector2 groundBoxSize;
 
-    [Header("Properties")]
+    //Top
+    [Header("BoxesTop")] //*3
+    public Vector2 TopBoxPos;
+    public Vector2 TopBoxSize;
+
+    //Wall
+    [Header("BoxesWall")] //*3
+    public Vector2 WallBoxPos;
+    public Vector2 WallboxSize;
+
+    //Ground
+    [Header("PropertiesGround")] 
     public int maxHits = 1;
     public bool detectGround = true;
     public ContactFilter2D filter;
+
+    //Top
+    [Header("PropertiesTop")]
+    public int maxHitsTop = 1;
+    public bool detectTop = true;
+    public ContactFilter2D filterTop;
+
+    //Wall
+    [Header("PropertiesWall")]
+    public int maxHitsWall = 1;
+    public bool detectWall = true;
+    public ContactFilter2D filterWall;
 
 
     private void FixedUpdate()
     {
         ResetState();
+        ResetStateTop();
+        ResetStateWall();
         DetectGround();
+        DetectTop();
+        DetectWall();
     }
 
+    //Ground
     void ResetState()
     {
         wasGroundedLastFrame = isGrounded;
@@ -36,7 +82,28 @@ public class CollisionDetection : MonoBehaviour
         isFalling = true;
     }
 
-    void DetectGround()
+    //Top
+    void ResetStateTop()
+    {
+        wasTopLastFrame = isGrounded;
+        isTop = false;
+        justNOTTop = false;
+        justTop = false;
+        isOnair = true;
+    }
+
+    //Wall
+    void ResetStateWall()
+    {
+        wasWallLastFrame = isGrounded;
+        isWall = false;
+        justNOTWall = false;
+        justWall = false;
+        isWall = true;
+    }
+
+    //Ground
+    void DetectGround() //*3
     {
         if(!detectGround) return;
 
@@ -62,10 +129,78 @@ public class CollisionDetection : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmosSelected()
+    //Top
+    void DetectTop() //*3
     {
+        if (!detectGround) return;
+
+        Collider2D[] results = new Collider2D[maxHits];
+        Vector3 newPos = (Vector3)TopBoxPos + transform.position;
+        int numHits = Physics2D.OverlapBox(newPos, TopBoxSize, 0, filter, results);
+
+        if (numHits > 0)
+        {
+            isTop = true;
+        }
+        isOnair = !isTop;
+
+        if (!wasTopLastFrame && isTop)
+        {
+            Debug.Log("JUST GROUNDED");
+            justTop = true;
+        }
+        if (wasTopLastFrame && !isGrounded)
+        {
+            Debug.Log("JUST NOT GROUNDED");
+            justNOTTop = true;
+        }
+    }
+
+    //Wall
+    void DetectWall() //*3
+    {
+        if (!detectWall) return;
+
+        Collider2D[] results = new Collider2D[maxHits];
+        Vector3 newPos = (Vector3)WallBoxPos + transform.position;
+        int numHits = Physics2D.OverlapBox(newPos, WallboxSize, 0, filter, results);
+
+        if (numHits > 0)
+        {
+            isWall = true;
+        }
+        isOnWall = !isWall;
+
+        if (!wasWallLastFrame && isWall)
+        {
+            Debug.Log("JUST GROUNDED");
+            justWall = true;
+        }
+        if (wasWallLastFrame && !isGrounded)
+        {
+            Debug.Log("JUST NOT GROUNDED");
+            justNOTWall = true;
+        }
+    }
+
+    //Ground
+    private void OnDrawGizmosSelected() //*3
+    {
+        //Top
         Gizmos.color = Color.blue;
         Vector3 newPos = (Vector3)groundBoxPos + transform.position;
         Gizmos.DrawWireCube(newPos, groundBoxSize);
+
+        //Top
+        Gizmos.color = Color.red;
+        Vector3 newPosTop = (Vector3)TopBoxPos + transform.position;
+        Gizmos.DrawWireCube(newPosTop, TopBoxSize);
+
+        //Wall
+        Gizmos.color = Color.yellow;
+        Vector3 newPosWall = (Vector3)WallBoxPos + transform.position;
+        Gizmos.DrawWireCube(newPosWall, WallboxSize);
     }
+
+    
 }
