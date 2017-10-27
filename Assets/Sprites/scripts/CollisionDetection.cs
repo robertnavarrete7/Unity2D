@@ -85,7 +85,7 @@ public class CollisionDetection : MonoBehaviour
     //Top
     void ResetStateTop()
     {
-        wasTopLastFrame = isGrounded;
+        wasTopLastFrame = isTop;
         isTop = false;
         justNOTTop = false;
         justTop = false;
@@ -95,7 +95,7 @@ public class CollisionDetection : MonoBehaviour
     //Wall
     void ResetStateWall()
     {
-        wasWallLastFrame = isGrounded;
+        wasWallLastFrame = isWall;
         isWall = false;
         justNOTWall = false;
         justWall = false;
@@ -146,12 +146,12 @@ public class CollisionDetection : MonoBehaviour
 
         if (!wasTopLastFrame && isTop)
         {
-            Debug.Log("JUST GROUNDED");
+            Debug.Log("JUST TOP");
             justTop = true;
         }
-        if (wasTopLastFrame && !isGrounded)
+        if (wasTopLastFrame && !isTop)
         {
-            Debug.Log("JUST NOT GROUNDED");
+            Debug.Log("JUST NOT TOP");
             justNOTTop = true;
         }
     }
@@ -173,12 +173,12 @@ public class CollisionDetection : MonoBehaviour
 
         if (!wasWallLastFrame && isWall)
         {
-            Debug.Log("JUST GROUNDED");
+            Debug.Log("JUST WALL");
             justWall = true;
         }
-        if (wasWallLastFrame && !isGrounded)
+        if (wasWallLastFrame && !isWall)
         {
-            Debug.Log("JUST NOT GROUNDED");
+            Debug.Log("JUST NOT WALL");
             justNOTWall = true;
         }
     }
