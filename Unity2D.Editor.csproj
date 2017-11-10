@@ -244,8 +244,23 @@
     <Reference Include="UnityEditor.Graphs">
       <HintPath>Library\UnityAssemblies\UnityEditor.Graphs.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.Android.Extensions">
+      <HintPath>Library\UnityAssemblies\UnityEditor.Android.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions">
+      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.WebGL.Extensions">
+      <HintPath>Library\UnityAssemblies\UnityEditor.WebGL.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.LinuxStandalone.Extensions">
+      <HintPath>Library\UnityAssemblies\UnityEditor.LinuxStandalone.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor.WindowsStandalone.Extensions">
       <HintPath>Library\UnityAssemblies\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.OSXStandalone.Extensions">
+      <HintPath>Library\UnityAssemblies\UnityEditor.OSXStandalone.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
       <HintPath>Library\UnityAssemblies\SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
@@ -265,6 +280,12 @@
     <Reference Include="UnityEditor.Purchasing">
       <HintPath>Library\UnityAssemblies\UnityEditor.Purchasing.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
+      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Common">
+      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Common.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Unity2D.csproj">
@@ -274,6 +295,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Sprites\scripts\Editor\NewScriptEditor.cs" />
+    <Compile Include="Assets\Sprites\Tilemaps\Tilemap\Brushes\Coordinate Brush\Scripts\Editor\CoordinateBrush.cs" />
+    <Compile Include="Assets\Sprites\Tilemaps\Tilemap\Brushes\GameObject Brush\Scripts\Editor\GameObjectBrush.cs" />
+    <Compile Include="Assets\Sprites\Tilemaps\Tilemap\Brushes\Line Brush\Scripts\Editor\LineBrush.cs" />
+    <Compile Include="Assets\Sprites\Tilemaps\Tilemap\Brushes\Prefab Brush\Scripts\Editor\PrefabBrush.cs" />
+    <Compile Include="Assets\Sprites\Tilemaps\Tilemap\Brushes\Random Brush\Scripts\Editor\RandomBrush.cs" />
+    <Compile Include="Assets\Sprites\Tilemaps\Tilemap\Brushes\Tint Brush Smooth\Scripts\Editor\TintBrushSmooth.cs" />
+    <Compile Include="Assets\Sprites\Tilemaps\Tilemap\Brushes\Tint Brush\Scripts\Editor\TintBrush.cs" />
+    <Compile Include="Assets\Sprites\Tilemaps\Tilemap\Destructible\Scripts\Editor\DestructibleEditor.cs" />
+    <Compile Include="Assets\Sprites\Tilemaps\Tilemap\Editor\PreviewUtil.cs" />
+    <Compile Include="Assets\Sprites\Tilemaps\Tilemap\Rule Tiles\Scripts\Editor\RuleTileEditor.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Sprites\Tilemaps\Tilemap\Brushes\Tint Brush Smooth\Shaders\TintedTilemap.shader" />
+    <None Include="Assets\Sprites\Tilemaps\Tilemap\Normal Mapping\Material\Shader\NormalMappedTile.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
